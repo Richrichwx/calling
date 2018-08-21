@@ -1,14 +1,16 @@
 <template>
-  <div class="space_conteiner">
-    <Header></Header>
-    <leftspace></leftspace>
-    <rightspace></rightspace>
+  <div class="workspace">
+    <header-space></header-space>
+    <sidebar></sidebar>
+    <right-space></right-space>
   </div>
 </template>
 
 <script>
 export default{
+  name: 'Workspace'
 }
 </script>
-<style scoped>
+
+<style>
 </style>

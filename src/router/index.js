@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import workspace from '@/workspace'
+import Workspace from '@/Workspace'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/workspace',
-      component: workspace
+      path: '/Workspace',
+      component: Workspace
     }
   ]
 })
