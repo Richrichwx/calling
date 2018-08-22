@@ -2,7 +2,7 @@
   <div class="workspace">
     <header-space></header-space>
     <sidebar></sidebar>
-    <right-space></right-space>
+    <space></space>
   </div>
 </template>
 

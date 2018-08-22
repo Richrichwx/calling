@@ -3,17 +3,17 @@
         <button class="sidebar__button sidebar__button_info">данные о контакте</button>
         <div class="sidebar__button sidebar__button_status" @click="show= !show">
             {{status}}
-            <transition name="fade">
-                <ul v-if="show">
-                    <li class="sidebar__button sidebar__button_list"
-                        v-for="item in items"
-                        :key="item"
-                        @click="changeClick(item)">
-                        {{item}}
-                    </li>
-                </ul>
-            </transition>
         </div>
+        <transition name="fade">
+            <ul v-if="show">
+                <li class="sidebar__button sidebar__button_list"
+                    v-for="item in items"
+                    :key="item"
+                    @click="changeClick(item)">
+                    {{item}}
+                </li>
+            </ul>
+        </transition>
     </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
   methods: {
     changeClick: function (item) {
       this.status = item
+      this.show = false
     }
   }
 }

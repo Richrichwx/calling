@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Workspace from '@/Workspace'
+import Workspace from '@/components/Workspace'
 
 Vue.use(Router)
 

@@ -3,15 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Workspace from './Workspace'
+import Workspace from './components/Workspace'
 import headerSpace from './components/workspace/headerSpace'
 import sidebar from './components/workspace/sidebar'
-import rightspace from './components/workspace/rightspace'
+import space from './components/workspace/space'
 
 Vue.component('Workspace', Workspace)
 Vue.component('header-space', headerSpace)
 Vue.component('sidebar', sidebar)
-Vue.component('right-space', rightspace)
+Vue.component('space', space)
 
 Vue.config.productionTip = false
 

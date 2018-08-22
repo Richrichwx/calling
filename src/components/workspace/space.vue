@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: 'right-space'
+  name: 'space'
 }
 </script>
 
