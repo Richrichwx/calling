@@ -61,7 +61,7 @@ export default {
     width: 300px;
     height: 40px;
     background: steelblue;
-    font-size: 20px;
+    font-size: 22px;
 }
 .sidebar__button_list{
     list-style: none;
