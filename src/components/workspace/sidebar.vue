@@ -43,7 +43,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
     border: 1px solid #000;
 }
 .sidebar__button{
@@ -53,7 +53,7 @@ export default {
     outline: none;
     border: 1px solid #000;;
     border-radius: 7px;
-    font-size: 25px;
+    font-size: 24px;
     margin-top: 20px;
     text-align: center;
 }
