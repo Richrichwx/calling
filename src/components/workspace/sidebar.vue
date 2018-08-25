@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 .sidebar{
     width: 400px;
     height: 500px;
@@ -66,16 +66,33 @@ export default {
 .sidebar__button_list{
     list-style: none;
     margin: -6px 0 10px -41px;
+    animation: .3s ease-in-out both fade;
 }
 .sidebar__button_list:hover{
     background: rgba(70, 131, 180, 0.61);
     transition: 0.5s;
 }
-
 .fade-enter-active, .fade-leave-active{
     transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to{
     opacity: 0;
+}
+@for $i from 1 through 5 {
+    .sidebar__button_list {
+        &:nth-child(#{$i}) {
+            animation-delay: $i * (.5s);
+        }
+    }
+}
+@keyframes fade{
+    0% {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 </style>
