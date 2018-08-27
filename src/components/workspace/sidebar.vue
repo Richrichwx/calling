@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar">
         <button class="sidebar__button sidebar__button_info">данные о контакте</button>
-        <div id="sidebar__button_status" v-on:click="openClick">
+        <div class="sidebar__button_status" @click="openClick">
             {{ status}}
         </div>
         <ul class="sidebar__button_list_item">
@@ -27,11 +27,11 @@ export default {
   methods: {
     openClick: function () {
       this.show = !this.show
-      const a = document.getElementById('sidebar__button_status')
+      const a = document.getElementsByClassName('sidebar__button_status')
       if (this.show) {
-        a.classList.add('open-list')
+        a[0].classList.add('open-list')
       } else {
-        a.className = ''
+        a[0].classList.remove('open-list')
       }
     }
   }
@@ -53,7 +53,7 @@ $bg: rgba(70, 131, 180, 0.61);
     margin-top: 10px;
     border: 1px solid #000;
 }
-.sidebar__button, #sidebar__button_status{
+.sidebar__button, .sidebar__button_status{
     width: 300px;
     height: 30px;
     cursor: pointer;
