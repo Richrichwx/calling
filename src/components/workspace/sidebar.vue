@@ -1,19 +1,16 @@
 <template>
     <div class="sidebar">
         <button class="sidebar__button sidebar__button_info">данные о контакте</button>
-        <div class="sidebar__button sidebar__button_status" @click="show= !show">
-            {{status}}
+        <div id="sidebar__button_status" v-on:click="openClick">
+            {{ status}}
         </div>
-        <transition name="fade">
-            <ul v-if="show">
-                <li class="sidebar__button sidebar__button_list"
-                    v-for="item in items"
-                    :key="item"
-                    @click="changeClick(item)">
-                    {{item}}
-                </li>
-            </ul>
-        </transition>
+        <ul class="sidebar__button_list_item">
+            <li class="sidebar__button sidebar__button_list"
+                v-for="item in items"
+                :key="item">
+                {{item}}
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -28,15 +25,25 @@ export default {
     }
   },
   methods: {
-    changeClick: function (item) {
-      this.status = item
-      this.show = false
+    openClick: function () {
+      this.show = !this.show
+      const a = document.getElementById('sidebar__button_status')
+      if (this.show) {
+        a.classList.add('open-list')
+      } else {
+        a.className = ''
+      }
     }
   }
 }
 </script>
 
 <style lang="scss">
+$e: cubic-bezier(0,.5,.5,1.1);
+$bord: 1px solid #000;
+$mg: -6px 0 10px -41px;
+$bg: rgba(70, 131, 180, 0.61);
+
 .sidebar{
     width: 400px;
     height: 500px;
@@ -46,53 +53,59 @@ export default {
     margin-top: 10px;
     border: 1px solid #000;
 }
-.sidebar__button{
+.sidebar__button, #sidebar__button_status{
     width: 300px;
     height: 30px;
     cursor: pointer;
     outline: none;
-    border: 1px solid #000;;
+    border: $bord;
     border-radius: 7px;
     font-size: 24px;
     margin-top: 20px;
     text-align: center;
 }
 .sidebar__button_info{
-    width: 300px;
     height: 40px;
     background: steelblue;
     font-size: 22px;
 }
-.sidebar__button_list{
-    list-style: none;
-    margin: -6px 0 10px -41px;
-    animation: .3s ease-in-out both fade;
-}
 .sidebar__button_list:hover{
-    background: rgba(70, 131, 180, 0.61);
+    background: $bg;
     transition: 0.5s;
 }
-.fade-enter-active, .fade-leave-active{
-    transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to{
+.sidebar__button_list{
+    list-style: none;
+    margin: $mg;
     opacity: 0;
-}
-@for $i from 1 through 5 {
-    .sidebar__button_list {
+    transform: translateY(-50%);
+    @for $i from 1 through 5 {
         &:nth-child(#{$i}) {
-            animation-delay: $i * (.5s);
+            transition: transform 150ms $e #{-($i - 5 - 1)*100}ms, opacity 100ms ease-out #{-($i - 5 - 1)*100}ms;
         }
     }
 }
-@keyframes fade{
-    0% {
-        opacity: 0;
-        transform: translateY(-60px);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
+.sidebar__button_list:hover{
+    background: $bg;
+    transition: 0.5s;
+}
+.sidebar__button_list:checked {
+    opacity: 0;
+    @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+            transition: transform 150ms $e #{-($i - 5 - 1)*100}ms, opacity 100ms ease-out #{-($i - 5 - 1)*100}ms;
+        }
     }
 }
+.open-list{
+    ~ .sidebar__button_list_item > .sidebar__button_list{
+        opacity: 1;
+        transform: none;
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+                transition: transform 150ms $e #{$i*100}ms, opacity 100ms ease-out #{$i*100}ms;
+            }
+        }
+    }
+}
+
 </style>
