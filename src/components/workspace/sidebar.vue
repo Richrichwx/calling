@@ -1,13 +1,14 @@
 <template>
     <div class="sidebar">
         <button class="sidebar__button sidebar__button_info">данные о контакте</button>
-        <div class="sidebar__button_status" @click="openClick">
-            {{ status}}
+        <div class="sidebar__button_status" @click="show=!show" :class="{openList: !show}">
+            {{status}}
         </div>
         <ul class="sidebar__button_list_item">
             <li class="sidebar__button sidebar__button_list"
                 v-for="item in items"
-                :key="item">
+                :key="item"
+                @click="changeClick(item)">
                 {{item}}
             </li>
         </ul>
@@ -25,25 +26,19 @@ export default {
     }
   },
   methods: {
-    openClick: function () {
-      this.show = !this.show
-      const a = document.getElementsByClassName('sidebar__button_status')
-      if (this.show) {
-        a[0].classList.add('open-list')
-      } else {
-        a[0].classList.remove('open-list')
-      }
+    changeClick (item) {
+      this.status = item
+      this.show = false
     }
   }
 }
 </script>
 
 <style lang="scss">
-$e: cubic-bezier(0,.5,.5,1.1);
-$bord: 1px solid #000;
-$mg: -6px 0 10px -41px;
-$bg: rgba(70, 131, 180, 0.61);
-
+    $e: cubic-bezier(0,.5,.5,1.1);
+    $bord: 1px solid #000;
+    $mg: -6px 0 10px -41px;
+    $bg: rgba(70, 131, 180, 0.61);
 .sidebar{
     width: 400px;
     height: 500px;
@@ -76,11 +71,11 @@ $bg: rgba(70, 131, 180, 0.61);
 .sidebar__button_list{
     list-style: none;
     margin: $mg;
-    opacity: 0;
-    transform: translateY(-50%);
+    opacity: 1;
+   transform: none;
     @for $i from 1 through 5 {
         &:nth-child(#{$i}) {
-            transition: transform 150ms $e #{-($i - 5 - 1)*100}ms, opacity 100ms ease-out #{-($i - 5 - 1)*100}ms;
+            transition: transform 150ms $e #{$i*100}ms, opacity 100ms ease-out #{$i*100}ms;
         }
     }
 }
@@ -88,24 +83,15 @@ $bg: rgba(70, 131, 180, 0.61);
     background: $bg;
     transition: 0.5s;
 }
-.sidebar__button_list:checked {
-    opacity: 0;
-    @for $i from 1 through 5 {
-        &:nth-child(#{$i}) {
-            transition: transform 150ms $e #{-($i - 5 - 1)*100}ms, opacity 100ms ease-out #{-($i - 5 - 1)*100}ms;
-        }
-    }
-}
-.open-list{
+.openList{
     ~ .sidebar__button_list_item > .sidebar__button_list{
-        opacity: 1;
-        transform: none;
+        opacity: 0;
+        transform: translateY(-50%);
         @for $i from 1 through 5 {
             &:nth-child(#{$i}) {
-                transition: transform 150ms $e #{$i*100}ms, opacity 100ms ease-out #{$i*100}ms;
+                transition: transform 150ms $e #{-($i - 5 - 1)*100}ms, opacity 100ms ease-out #{-($i - 5 - 1)*100}ms;
             }
         }
     }
 }
-
 </style>
