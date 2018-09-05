@@ -7,6 +7,7 @@ import Workspace from './components/Workspace'
 import headerSpace from './components/workspace/headerSpace'
 import sidebar from './components/workspace/sidebar'
 import space from './components/workspace/space'
+import store from './store/store'
 
 Vue.component('Workspace', Workspace)
 Vue.component('header-space', headerSpace)
@@ -18,6 +19,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

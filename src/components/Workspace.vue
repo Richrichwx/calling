@@ -1,8 +1,10 @@
 <template>
   <div class="workspace">
     <header-space></header-space>
+    <div class="common__container">
     <sidebar></sidebar>
     <space></space>
+    </div>
   </div>
 </template>
 
@@ -13,4 +15,7 @@ export default{
 </script>
 
 <style>
+.common__container{
+    display: flex;
+}
 </style>
