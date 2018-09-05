@@ -1,12 +1,15 @@
 <template>
-    <div class="chatSpace">
-        <ul class="chatSpace__button_item">
-           <li class="chatSpace__button chatSpace__button_question" v-for="(item, index) in questions"
+    <div class="messages">
+        <ul class="messages__button_item">
+           <li class="messages__button messages__button_question" v-for="(item, index) in questions"
                :key="item.id"
                :class="{showList: questions.length > 1 && index !== questions.length - 1}">
                {{ index +1 }} > {{ item.title }}
                <br>
-               <button class="chatSpace__button chatSpace__button_answer" v-for="quest in item.answer" :key="quest.id" @click="change(quest)">
+               <button class="messages__button messages__button_answer"
+                       v-for="quest in item.answer"
+                       :key="quest.id"
+                       @click="change(quest)">
                    {{ quest.title }}
                </button>
            </li>
@@ -88,7 +91,7 @@ export default {
 </script>
 
 <style scoped>
-.chatSpace{
+.messages{
     height: 500px;
     width: 950px;
     border: 1px solid #000;
@@ -98,7 +101,7 @@ export default {
     overflow: scroll;
     overflow-x:hidden;
 }
-.chatSpace__button{
+.messages__button{
     width: 800px;
     height: 30px;
     cursor: pointer;
@@ -108,14 +111,14 @@ export default {
     font-size: 20px;
     margin-top: 20px;
 }
-.chatSpace__button_answer{
+.messages__button_answer{
     width: 200px;
     margin-left: 30px;
     font-size: 16px;
     background: #fff;
     border: 1px solid #bfbfbf;
 }
-.chatSpace__button_answer:hover{
+.messages__button_answer:hover{
     background: rgba(70, 131, 180, 0.61);
     transition: 0.5s;
 }
