@@ -2,13 +2,13 @@
     <div class="messages">
         <ul class="messages__button_item">
            <li class="messages__button messages__button_question" v-for="(item, index) in questions"
-               :key="item.id"
+               :key="item"
                :class="{showList: questions.length > 1 && index !== questions.length - 1}">
                {{ index +1 }} > {{ item.title }}
                <br>
                <button class="messages__button messages__button_answer"
                        v-for="quest in item.answer"
-                       :key="quest.id"
+                       :key="quest"
                        @click="change(quest)">
                    {{ quest.title }}
                </button>
@@ -104,7 +104,6 @@ export default {
 .messages__button{
     width: 800px;
     height: 30px;
-    cursor: pointer;
     outline: none;
     list-style: none;
     border-radius: 7px;
@@ -117,6 +116,7 @@ export default {
     font-size: 16px;
     background: #fff;
     border: 1px solid #bfbfbf;
+    cursor: pointer;
 }
 .messages__button_answer:hover{
     background: rgba(70, 131, 180, 0.61);
