@@ -1,15 +1,17 @@
 <template>
     <div class="messages">
         <ul class="messages__button_item">
-           <li class="messages__button messages__button_question" v-for="(item, index) in questions"
-               :key="item"
+           <li class="messages__button messages__button_question"
+               v-for="(item, index) in questions"
+               :key="item.id"
                :class="{showList: questions.length > 1 && index !== questions.length - 1}">
                {{ index +1 }} > {{ item.title }}
                <br>
                <button class="messages__button messages__button_answer"
                        v-for="quest in item.answer"
-                       :key="quest"
-                       @click="change(quest)">
+                       :key="quest.id"
+                       @click="change(quest)"
+                       :disabled="questions.length > 1 && index !== questions.length -1">
                    {{ quest.title }}
                </button>
            </li>
@@ -76,15 +78,7 @@ export default {
   },
   methods: {
     change: function (item) {
-      let index = 0
-      this.questions.map(question => {
-        if (question.title === item.question) {
-          index++
-        }
-      })
-      if (index <= 0) {
-        this.questions = [...this.questions, item.question]
-      }
+      this.questions = [...this.questions, item.question]
     }
   }
 }
@@ -95,7 +89,6 @@ export default {
     height: 500px;
     width: 950px;
     border: 1px solid #000;
-    display: flex;
     margin-top: 10px;
     margin-left: 20px;
     overflow: scroll;
@@ -103,20 +96,23 @@ export default {
 }
 .messages__button{
     width: 800px;
-    height: 30px;
     outline: none;
     list-style: none;
     border-radius: 7px;
     font-size: 20px;
-    margin-top: 20px;
 }
 .messages__button_answer{
     width: 200px;
+    height: 30px;
     margin-left: 30px;
+    margin-top: 10px;
     font-size: 16px;
     background: #fff;
     border: 1px solid #bfbfbf;
     cursor: pointer;
+}
+.messages__button_question{
+    margin-top: 10px;
 }
 .messages__button_answer:hover{
     background: rgba(70, 131, 180, 0.61);
@@ -124,6 +120,5 @@ export default {
 }
 .showList{
     opacity: 0.4;
-    overflow: hidden;
 }
 </style>
